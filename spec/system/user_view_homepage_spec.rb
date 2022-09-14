@@ -26,11 +26,11 @@ describe 'Usuário visita tela inicial' do
 
   it 'e não existem galpões cadastrados' do
     # Arrange
-
     # Act
     visit('/') 
-
     # Assert
     expect(page).to have_content('Não existem galpões cadastrados')
   end
+
+
 end
