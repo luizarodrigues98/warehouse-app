@@ -6,7 +6,7 @@ describe "Usuário ver detalhes de um galpão" do
                       address: 'Avenida do Aeroporto, 100', cep: '1500-000',
                      description: 'Galpão destinado para cargas internacionais')
     #ACT
-    visit('/') 
+    visit(root_path) 
     click_on('Aeroporto SP')
     #ASSERT
     expect(page).to have_content('Galpão GRU')
@@ -15,5 +15,18 @@ describe "Usuário ver detalhes de um galpão" do
     expect(page).to have_content('Área: 100000 m2')
     expect(page).to have_content('Endereço: Avenida do Aeroporto, 100 CEP: 1500-000')
     expect(page).to have_content('Galpão destinado para cargas internacionais')
+  end
+
+  it 'e volta para a tela inicial' do
+    #arrange: criar um galpão
+    Warehouse.create(name:'Aeroporto SP', code:'GRU' , city: 'Guarulhos', area: 100_000,
+                    address: 'Avenida do Aeroporto, 100', cep: '1500-000',
+                    description: 'Galpão destinado para cargas internacionais')
+    #act: visital a tela inicial, clicar no nome do galpao, clical em 'voltar'
+    visit root_path
+    click_on 'Aeroporto SP'
+    click_on 'Voltar'
+    #assert: espero boltar para tela inicial
+    expect(current_path).to eq(root_path)
   end
 end
