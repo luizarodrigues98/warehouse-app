@@ -31,8 +31,9 @@ describe "Usuário cadastra um galpão" do
     click_on 'Enviar'
     #assert
     expect(current_path).to  eq root_path 
+    expect(page).to have_content 'Galpão cadastrado com sucesso.' 
     expect(page).to have_content 'Rio de Janeiro' 
-    expect(page).to have_content 'Rio'
+    expect(page).to have_content 'RIO'
     expect(page).to have_content '3200 m2' 
 
   end
