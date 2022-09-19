@@ -1,5 +1,5 @@
 class WarehousesController < ApplicationController
-
+  before_action :set_warehouse, only: [:show, :edit, :update]
   def show
     @warehouse = Warehouse.find(params[:id])
   end
@@ -17,7 +17,6 @@ class WarehousesController < ApplicationController
   end
 
   def edit
-    @warehouse = Warehouse.find(params[:id])  
   end
   
   def update
@@ -25,13 +24,17 @@ class WarehousesController < ApplicationController
     if @warehouse.update(warehouse_params)
       redirect_to warehouse_path(@warehouse.id), notice: 'Galpão atualizado com sucesso'
     else 
-      flash.now[:notice] = 'Não foi possivel atualizar o galpão'
+      flash.now[:notice] = 'Não foi possível atualizar o galpão'
       render 'edit'
     end
   end
 
   private
   
+   def set_warehouse
+    @warehouse = Warehouse.find(params[:id])  
+  end
+ 
   def warehouse_params
     params.require(:warehouse).permit(:name, :code, :description, 
                                       :address, :city, :cep, :area)
