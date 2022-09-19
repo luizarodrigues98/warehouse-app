@@ -16,6 +16,14 @@ class WarehousesController < ApplicationController
     end
   end
 
+  def edit
+    @warehouse = Warehouse.find(params[:id])  
+  end
+  
+  def update
+    
+  end
+
   private
   
   def warehouse_params
