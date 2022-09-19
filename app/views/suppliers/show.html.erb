@@ -3,9 +3,11 @@
 </h2>
 
 <dl> 
-  <dt> Documento: </dt>
+  <dt> Documento:</dt>
+    <dd> <%= @supplier.registration_number%>  </dd>
+  <dt>Endereço:</dt>
     <dd><%= @supplier.full_address%>  </dd>
-  <dt> Endereço </dt>
+  <dt> Email:</dt>
   <dd><%=@supplier.email %>  </dd>
 
 </dl>

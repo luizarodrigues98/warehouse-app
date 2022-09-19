@@ -5,16 +5,14 @@ describe 'Usuário vê fornecedores' do
     #arrange
     #Act
     visit(root_path)
-    whitin('nabv') do
-      click_on 'Fornecedores'
-    end
+    click_on 'Fornecedores'
     #Assert
     expect(current_path).to eq suppliers_path  
   end
 
   it 'com sucesso' do
     Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '123456789',
-                      full_address: 'Av das palmas, 100', city:'Bauru', state: 'SP', email: 'contato@gmail.com')
+                      full_address: 'Av das palmas, s100', city:'Bauru', state: 'SP', email: 'contato@gmail.com')
     Supplier.create!(corporate_name: 'Spark Industries Brasil LTDA', brand_name: 'Spark', registration_number: '123456789',
                       full_address: 'Torre da Industria, 1', city:'Teresina', state: 'PI', email: 'contato@gmail.com')
     
@@ -26,7 +24,6 @@ describe 'Usuário vê fornecedores' do
     expect(page).to have_content('Bauru - SP')  
     expect(page).to have_content('Spark')  
     expect(page).to have_content('Teresina - PI')  
-    expect(page).to have_content('')  
 
   end
 

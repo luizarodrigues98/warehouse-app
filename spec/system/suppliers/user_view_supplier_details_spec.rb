@@ -10,7 +10,7 @@ describe 'Usuário vê detalhes do fornecedor' do
     click_on 'ACME'
 
     expect(page).to have_content('ACME LTDA')
-    expect(page).to have_content('Documento:123456789 ')
+    expect(page).to have_content('Documento: 123456789')
     expect(page).to have_content('Endereço: Av das palmas, 100')
 
   end
