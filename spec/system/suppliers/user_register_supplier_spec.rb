@@ -7,7 +7,7 @@ describe "Usuário cadastra um fornecedor" do
     visit root_path
     click_on 'Cadastrar Fornecedor'
     #assert
-    expect(page).to have_field('Nome Corporativo') 
+    expect(page).to have_field('Nome corporativo') 
     expect(page).to have_field('Nome fantasia')
     expect(page).to have_field('CNPJ')    
     expect(page).to have_field('Endereço')
@@ -22,8 +22,8 @@ describe "Usuário cadastra um fornecedor" do
     visit root_path
     click_on 'Cadastrar Fornecedor'
     fill_in "Nome fantasia",	with: "SHELL"
-    fill_in "Nome Corporativo",	with: "SHELL BRASIL PETROLEO LTDA"  
-    fill_in "CNPJ",	with: "123456666"  
+    fill_in "Nome corporativo",	with: "SHELL BRASIL PETROLEO LTDA"  
+    fill_in "CNPJ",	with: "1234567891011"  
     fill_in "Endereço",	with: "Avenida do Museu do amanhã, 1000"  
     fill_in "Cidade",	with: "Rio de Janeiro"  
     fill_in "Estado",	with: "RJ"  
@@ -36,19 +36,19 @@ describe "Usuário cadastra um fornecedor" do
     expect(page).to have_content 'Rio de Janeiro - RJ' 
   end
 
-  # it 'com dados incompletos' do
-  #   #arrange
-  #   #act
-  #   visit root_path
-  #   click_on 'Cadastrar Fornecedor'
-  #   fill_in "Nome",	with: ''
-  #   fill_in "Nome Corporativo",	with: ''
-  #   fill_in "CNPJ",	with: ''  
-  #   click_on 'Enviar'
-  #   #assert
-  #   expect(page).to have_content 'Galpão não cadastrado.'
-  #   expect(page).to have_content 'Nome não pode ficar em branco'
-  #   expect(page).to have_content 'CNPJ não pode ficar em branco'
-  # end
+  it 'com dados incompletos' do
+    #arrange
+    #act
+    visit root_path
+    click_on 'Cadastrar Fornecedor'
+    fill_in "Nome fantasia",	with: ''
+    fill_in "Nome corporativo",	with: ''
+    fill_in "CNPJ",	with: ''  
+    click_on 'Enviar'
+    #assert
+    expect(page).to have_content 'Fornecedor não cadastrado'
+    expect(page).to have_content 'Nome corporativo não pode ficar em branco'
+    expect(page).to have_content 'Nome fantasia não pode ficar em branco'
+  end
 end
  

@@ -15,5 +15,8 @@
 <%= link_to "Editar", edit_supplier_path(@supplier.id) %>
 
 <div>
+  <%= link_to('Remover', supplier_path(@supplier.id), method: :delete)  %>
+</div>
+<div>
   <%= link_to  'Voltar', root_path %>
 </div>
