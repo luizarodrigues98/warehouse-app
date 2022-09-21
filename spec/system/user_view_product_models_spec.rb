@@ -26,4 +26,10 @@ describe "Usuário vê modelos de produtos" do
     expect(page).to have_content 'Samsung'
 
   end
+
+  it 'e não existem produtos cadastrados' do
+    visit root_path
+    click_on 'Modelos de Produtos'
+    expect(page).to have_content 'Não tem nenhum modelo de produto cadastrado'
+  end
 end
