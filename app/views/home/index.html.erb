@@ -9,6 +9,7 @@
   <div>
   <%= link_to("Cadastrar Galpão", new_warehouse_path) %>
   </div>
+
   <% @warehouses.each do |w|%>
     <div>
       <h3><%= link_to(w.name, warehouse_path(w.id)) %></h3>
