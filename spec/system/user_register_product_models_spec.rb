@@ -16,7 +16,7 @@ describe "Usuário cadastra um modelo de produtos" do
     fill_in "Altura",	with: 60 
     fill_in "Largura",	with: 90 
     fill_in "Profundidade",	with: 10
-    fill_in "SKU",	with: "TV40-SAMS-XSPTO" 
+    fill_in "SKU",	with: "TV40-SAMS-XSPTOX9595" 
     select supplier.brand_name, from: 'Fornecedor'
     click_on 'Enviar'
 
@@ -24,7 +24,7 @@ describe "Usuário cadastra um modelo de produtos" do
     expect(page).to have_content 'TV 40 polegadas'
     expect(page).to have_content 'Fornecedor: Samsung'
     
-    expect(page).to have_content 'SKU: TV40-SAMS-XSPTO'
+    expect(page).to have_content 'SKU: TV40-SAMS-XSPTOX9595'
     expect(page).to have_content 'Dimensão: 60cm x 90cm x 10cm'
     expect(page).to have_content 'Peso: 10000g'
   
