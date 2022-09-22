@@ -10,9 +10,14 @@ class ProductModelsController < ApplicationController
   end
 
   def create
+    @suppliers = Supplier.all
     @product_model = ProductModel.new(product_models_params) 
-    @product_model.save
+    if @product_model.save
     redirect_to @product_model, notice: 'Modelo de produto cadastrado com sucesso'
+    else
+      flash.now[:notice] = 'Não foi possivel cadastrar o modelo de produto'
+      render 'new'
+    end
   end
 
   def show
