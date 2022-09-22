@@ -12,11 +12,11 @@ class ProductModelsController < ApplicationController
   def create
     @product_model = ProductModel.new(product_models_params) 
     @product_model.save
-    redirect_to @product_models
+    redirect_to @product_model, notice: 'Modelo de produto cadastrado com sucesso'
   end
 
   def show
-    
+    @product_model = ProductModel.find(params[:id]) 
   end
 
   private 
