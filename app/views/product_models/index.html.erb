@@ -6,14 +6,14 @@
 
   <% @product_models.each do |product|%>
     <div>
-      <h2> <%= product.name%> </h2>
+      <h2>  <%=product.name%> </h2>
       <dl>  
       <dt> SKU </dt>
         <dd> <%= product.sku%></dd>
       <dt> Fornecedor </dt>
         <dd> <%= product.supplier.brand_name%> </dd>
       <dl>  
-
+      <%= link_to 'Visualizar', product %>
     </div>
     <%end%>
 <%else%>
