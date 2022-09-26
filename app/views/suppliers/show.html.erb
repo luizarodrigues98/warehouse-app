@@ -1,29 +1,28 @@
 <h1> Fornecedor <%= @supplier.brand_name%></h1>
-<h2> <%= @supplier.corporate_name%>
-</h2>
+<h2> <%= @supplier.corporate_name%> </h2>
 
 <dl> 
   <dt> Documento:</dt>
-    <dd> <%= @supplier.registration_number%>  </dd>
+  <dd> <%= @supplier.registration_number%>  </dd>
   <dt>Endereço:</dt>
-    <dd><%= @supplier.full_address%>  </dd>
+  <dd><%= @supplier.full_address%>  </dd>
   <dt> Email:</dt>
   <dd><%=@supplier.email %>  </dd>
 
 </dl>
 <dl>
-    <dt>Modelos de Produto </dt>
- 
-  <% @product_model.each do |p|%> 
-    <div>
-      <dt>Produto: </dt>
+  <dt>Modelos de Produto </dt>
+  <ul> 
+    <% @product_models.each do |p|%> 
+      <li>
+        <dt>Produto: </dt>
         <dd><%= p.name%></dd>
-      <dt> SKU: </dt>
+        <dt> SKU: </dt>
         <dd><%= p.sku%></dd>
-      <dt><%= link_to 'Visualizar', p %></dt>
-    </div>
-  <%end%>
- 
+        <dt><%= link_to 'Visualizar', p %></dt>
+      </li>
+    <%end%>
+  </ul>
 </dl>
 
 
