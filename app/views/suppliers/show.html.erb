@@ -11,6 +11,21 @@
   <dd><%=@supplier.email %>  </dd>
 
 </dl>
+<dl>
+    <dt>Modelos de Produto </dt>
+ 
+  <% @product_model.each do |p|%> 
+    <div>
+      <dt>Produto: </dt>
+        <dd><%= p.name%></dd>
+      <dt> SKU: </dt>
+        <dd><%= p.sku%></dd>
+      <dt><%= link_to 'Visualizar', p %></dt>
+    </div>
+  <%end%>
+ 
+</dl>
+
 
 <%= link_to "Editar", edit_supplier_path(@supplier.id) %>
 
@@ -20,3 +35,4 @@
 <div>
   <%= button_to('Remover', supplier_path(@supplier.id), method: :delete)  %>
 </div>
+
