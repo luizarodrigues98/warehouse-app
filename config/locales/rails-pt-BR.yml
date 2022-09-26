@@ -2,6 +2,11 @@
 pt-BR:
   activerecord:
     errors:
+      models:
+        supplier:
+          attributes: 
+            registration_number: 
+              invalid_registration_number: inválido.
       messages:
         record_invalid: 'A validação falhou: %{errors}'
         restrict_dependent_destroy:

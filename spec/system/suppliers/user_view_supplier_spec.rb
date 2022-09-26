@@ -13,9 +13,9 @@ describe 'Usuário vê fornecedores' do
   end
 
   it 'com sucesso' do
-    Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: '1234567891000',
+    Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: CNPJ.generate,
                       full_address: 'Av das palmas, s100', city:'Bauru', state: 'SP', email: 'contato@gmail.com')
-    Supplier.create!(corporate_name: 'Spark Industries Brasil LTDA', brand_name: 'Spark', registration_number: '1234567891011',
+    Supplier.create!(corporate_name: 'Spark Industries Brasil LTDA', brand_name: 'Spark', registration_number: CNPJ.generate,
                       full_address: 'Torre da Industria, 1', city:'Teresina', state: 'PI', email: 'contato@gmail.com')
     
     visit root_path

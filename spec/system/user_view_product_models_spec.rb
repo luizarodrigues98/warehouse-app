@@ -10,7 +10,7 @@ describe "Usuário vê modelos de produtos" do
 
   it 'com sucesso' do
     supplier = Supplier.new(brand_name:'Samsung', corporate_name: 'Samsung Eletronicos LTDA', 
-                  registration_number: '9876544322100', full_address: 'Av Nações Unidas, 1000',
+                  registration_number: CNPJ.generate, full_address: 'Av Nações Unidas, 1000',
                   city: 'São Paulo', state: 'SP', email:'sac@samsung.com.br')
     ProductModel.create!(name:'TV 32', weight: 8000, width: 70, height: 45, depth: 10,  
                           sku: 'TV32-SAMSU-XSPTOX959', supplier: supplier)

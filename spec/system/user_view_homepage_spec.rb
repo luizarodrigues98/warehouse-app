@@ -8,8 +8,8 @@ describe 'Usuário visita tela inicial' do
     expect(page).to have_content('Galpões & Estoque')  
   end
   it 'e vê os galpões cadastrados' do
-    Warehouse.create(name: 'Rio', code: 'SDU', city:'Rio de Janeiro', area: 60_000, address: 'Av. do porto, 1000', cep:'200000', description: 'Galpão do Rio')
-    Warehouse.create(name: 'Maceio', code: 'MCZ', city:'Maceio', area: 50_000, address: 'Av. Atlântica, 1000', cep:'800000', description: 'Perto do Aeroporto')
+    Warehouse.create(name: 'Rio', code: 'SDU', city:'Rio de Janeiro', area: 60_000, address: 'Av. do porto, 1000', cep:'12345-678' , description: 'Galpão do Rio')
+    Warehouse.create(name: 'Maceio', code: 'MCZ', city:'Maceio', area: 50_000, address: 'Av. Atlântica, 1000', cep:'87654-321', description: 'Perto do Aeroporto')
     
     visit(root_path) 
     expect(page).not_to have_content('Não existem galpões cadastrados')

@@ -23,7 +23,7 @@ describe "Usuário cadastra um fornecedor" do
     click_on 'Cadastrar Fornecedor'
     fill_in "Nome fantasia",	with: "SHELL"
     fill_in "Nome corporativo",	with: "SHELL BRASIL PETROLEO LTDA"  
-    fill_in "CNPJ",	with: "1234567891011"  
+    fill_in "CNPJ",	with: CNPJ.generate  
     fill_in "Endereço",	with: "Avenida do Museu do amanhã, 1000"  
     fill_in "Cidade",	with: "Rio de Janeiro"  
     fill_in "Estado",	with: "RJ"  

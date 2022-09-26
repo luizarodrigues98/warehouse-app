@@ -4,7 +4,7 @@ describe "Usuário edita um galpão" do
   it 'a partir da página de detalhes' do
     #arrange: criar um galpão no banco de dados
     warehouse = Warehouse.create!(name:'Aeroporto SP', code:'GRU' , city: 'Guarulhos', area: 100_000,
-                                address: 'Avenida do Aeroporto, 100', cep: '1500-000',
+                                address: 'Avenida do Aeroporto, 100', cep: '15000-000',
                                 description: 'Galpão destinado para cargas internacionais')
     #act: abrir o app, visitar o galpao, clicar em "Editar"
     visit root_path
@@ -21,7 +21,7 @@ describe "Usuário edita um galpão" do
   end
   it 'com sucesso' do
     warehouse = Warehouse.create!(name:'Galpão Internacional', code:'GRU' , city: 'Guarulhos', area: 200_000,
-                                  address: 'Av. dos Galpões, 100', cep: '1500-000',
+                                  address: 'Av. dos Galpões, 100', cep: '15000-000',
                                   description: 'Galpão destinado para cargas internacionais')
     visit root_path
     click_on 'Galpão Internacional'
@@ -38,7 +38,7 @@ describe "Usuário edita um galpão" do
   
   it "e mantém os campos obrigatórios" do
     warehouse = Warehouse.create!(name:'Aeroporto SP', code:'GRU' , city: 'Guarulhos', area: 100_000,
-                  address: 'Avenida do Aeroporto, 100', cep: '1500-000',
+                  address: 'Avenida do Aeroporto, 100', cep: '15000-000',
                   description: 'Galpão destinado para cargas internacionais')
       visit root_path
       click_on 'Aeroporto SP'
