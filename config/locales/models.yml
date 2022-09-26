@@ -7,6 +7,9 @@ pt-BR:
       supplier:
         one: Fornecedor
         other: Fornecedores
+      product_model:
+        one: Modelo de Produto
+        other: Modelos de Produtos
     attributes:
       warehouse:
         name: Nome
@@ -28,3 +31,10 @@ pt-BR:
         state: Estado
         created_at: Criado em
         updated_at: Atualizado em
+      product_model:
+        name: Nome
+        sku: SKU
+        weight: Peso
+        width: Largura
+        height: Altura
+        depth: Profundidade
