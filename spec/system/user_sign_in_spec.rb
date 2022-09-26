@@ -1,8 +1,14 @@
 require 'rails_helper'
 
+
+
 describe "Usuário se autentica" do
+  
+  before(:each) do
+    user = create(:user)
+  end
   it 'com sucesso' do
-    User.create!(email:"joao@email.com", password:"password")
+    # User.create!(email:"joao@email.com", password:"password")
     visit root_path
     click_on 'Entrar'
     within('form') do
@@ -18,7 +24,7 @@ describe "Usuário se autentica" do
   end
 
   it 'espera ver uma mensagem de sucesso' do
-    User.create!(email:"joao@email.com", password:"password")
+    # User.create!(email:"joao@email.com", password:"password")
     visit root_path
     click_on 'Entrar'
     within('form') do
@@ -30,7 +36,7 @@ describe "Usuário se autentica" do
   end
 
   it 'e faz logout' do
-    User.create!(email:"joao@email.com", password:"password")
+    # User.create!(email:"joao@email.com", password:"password")
     visit root_path
     click_on 'Entrar'
     within('form') do
