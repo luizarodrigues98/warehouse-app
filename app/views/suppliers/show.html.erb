@@ -10,28 +10,24 @@
   <dd><%=@supplier.email %>  </dd>
 
 </dl>
+<ul>
+    <%= link_to "Editar", edit_supplier_path(@supplier.id), class: 'button' %>
+    <%= link_to  'Voltar', suppliers_path, class: 'button' %>
+    <%= button_to('Remover', supplier_path(@supplier.id), method: :delete, class: 'button')  %> 
+</ul>
+<h3>Produtos deste Fornecedor </h3>
 <dl>
-  <dt>Modelos de Produto </dt>
-  <ul> 
-    <% @product_models.each do |p|%> 
-      <li>
-        <dt>Produto: </dt>
-        <dd><%= p.name%></dd>
-        <dt> SKU: </dt>
-        <dd><%= p.sku%></dd>
-        <dt><%= link_to 'Visualizar', p %></dt>
-      </li>
-    <%end%>
-  </ul>
+   
+  <% @product_models.each do |p|%> 
+    <ul>
+        <li>
+          <dt><strong>Produto: <%= p.name%></strong></dt>
+          <dt><strong> SKU: </strong><%= p.sku%></dt>
+          <dt><%= link_to 'Visualizar', p,  class: 'button' %></dt>
+        </li>
+      </ul>
+  <%end%>
+  
 </dl>
 
-
-<%= link_to "Editar", edit_supplier_path(@supplier.id) %>
-
-<div>
-  <%= link_to  'Voltar', suppliers_path %>
-</div>
-<div>
-  <%= button_to('Remover', supplier_path(@supplier.id), method: :delete)  %>
-</div>
 
