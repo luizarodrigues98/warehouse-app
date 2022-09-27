@@ -40,6 +40,8 @@ describe "Usuário se autentica" do
     end   
     visit root_path
     click_on 'Sair'
+    expect(page).to have_content 'Para continuar, faça login ou registre-se'
+
     expect(page).to have_link 'Entrar' 
     expect(page).not_to have_button 'Sair' 
    end
