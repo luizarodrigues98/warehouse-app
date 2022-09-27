@@ -1,11 +1,15 @@
 require 'rails_helper'
 
 describe "Usuário cadastra um fornecedor" do
+  subject { create(:user) } 
+  
   it 'a partir da tela inicial' do
     #arrange
     #act
     visit root_path
-    click_on 'Cadastrar Fornecedor'
+    login_as(subject)
+    visit root_path
+    click_on "Cadastrar Fornecedor"
     #assert
     expect(page).to have_field('Nome corporativo') 
     expect(page).to have_field('Nome fantasia')
@@ -19,6 +23,8 @@ describe "Usuário cadastra um fornecedor" do
 
   it 'com sucesso' do
     #act
+    visit root_path
+    login_as(subject)
     visit root_path
     click_on 'Cadastrar Fornecedor'
     fill_in "Nome fantasia",	with: "SHELL"
@@ -39,6 +45,8 @@ describe "Usuário cadastra um fornecedor" do
   it 'com dados incompletos' do
     #arrange
     #act
+    visit root_path
+    login_as(subject)
     visit root_path
     click_on 'Cadastrar Fornecedor'
     fill_in "Nome fantasia",	with: ''

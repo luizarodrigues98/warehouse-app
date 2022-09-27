@@ -1,9 +1,12 @@
 require 'rails_helper'
 
 describe 'Usuário visita tela inicial' do
+  subject { create(:user) } 
+
   it 'e vê o nome da app' do
     #Act
     visit(root_path)
+
     #Assert
     expect(page).to have_content('Galpões & Estoque')  
   end
@@ -12,6 +15,8 @@ describe 'Usuário visita tela inicial' do
     Warehouse.create(name: 'Maceio', code: 'MCZ', city:'Maceio', area: 50_000, address: 'Av. Atlântica, 1000', cep:'87654-321', description: 'Perto do Aeroporto')
     
     visit(root_path) 
+    login_as(subject)
+    visit root_path
     expect(page).not_to have_content('Não existem galpões cadastrados')
     expect(page).to have_content('Rio')
     expect(page).to have_content('Código: SDU')
@@ -28,6 +33,8 @@ describe 'Usuário visita tela inicial' do
     # Arrange
     # Act
     visit(root_path) 
+    login_as(subject)
+    visit root_path
     # Assert
     expect(page).to have_content('Não existem galpões cadastrados')
   end

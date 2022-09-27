@@ -10,7 +10,6 @@ describe "Usuário cadastra um modelo de produtos" do
                                       registration_number: CNPJ.generate, full_address: 'Av IBIAPUERA, 1000',
                                       city: 'São Paulo', state: 'SP', email:'sac@LG.com.br')
     visit root_path    
-    click_on 'Entrar'
     login_as(subject)
     click_on 'Modelos de Produtos'
     click_on 'Cadastrar Novo'
@@ -39,7 +38,6 @@ describe "Usuário cadastra um modelo de produtos" do
       registration_number: CNPJ.generate, full_address: 'Av Nações Unidas, 1000', city: 'São Paulo', state: 'SP', email:'sac@samsung.com.br')
     
     visit root_path
-    click_on 'Entrar'
     login_as(subject)
     click_on 'Modelos de Produtos'
     click_on 'Cadastrar Novo'

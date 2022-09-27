@@ -4,10 +4,13 @@ describe "Usuário edita um galpão" do
   before(:each) do
     warehouse = create(:warehouse)
   end
+  subject { create(:user) } 
 
   it 'a partir da página de detalhes' do
     
     #act: abrir o app, visitar o galpao, clicar em "Editar"
+    visit root_path
+    login_as(subject)
     visit root_path
     click_on 'Aeroporto SP'
     click_on 'Editar'
@@ -23,6 +26,8 @@ describe "Usuário edita um galpão" do
   it 'com sucesso' do
     
     visit root_path
+    login_as(subject)
+    visit root_path
     click_on 'Aeroporto SP'
     click_on 'Editar'
     fill_in "Nome",	with: "Galpão Internacional"
@@ -36,16 +41,18 @@ describe "Usuário edita um galpão" do
   end
   
   it "e mantém os campos obrigatórios" do
-   
-      visit root_path
-      click_on 'Aeroporto SP'
-      click_on 'Editar'
-      fill_in "Nome",	with: ""
-      fill_in "Área",	with: ""
-      fill_in "Endereço",	with: ""
-      click_on 'Enviar'
 
-      expect(page).to have_content 'Não foi possível atualizar o galpão'
+    visit root_path
+    login_as(subject)
+    visit root_path
+    click_on 'Aeroporto SP'
+    click_on 'Editar'
+    fill_in "Nome",	with: ""
+    fill_in "Área",	with: ""
+    fill_in "Endereço",	with: ""
+    click_on 'Enviar'
+
+    expect(page).to have_content 'Não foi possível atualizar o galpão'
   end
   
 end

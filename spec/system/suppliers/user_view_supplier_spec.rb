@@ -1,10 +1,13 @@
 require 'rails_helper'
 
 describe 'Usuário vê fornecedores' do
+  subject { create(:user) } 
+  
   it 'a partir do menu' do
     #arrange
     #Act
     visit(root_path)
+    login_as(subject)
     within('nav') do
       click_on 'Fornecedores'
     end
@@ -19,6 +22,7 @@ describe 'Usuário vê fornecedores' do
                       full_address: 'Torre da Industria, 1', city:'Teresina', state: 'PI', email: 'contato@gmail.com')
     
     visit root_path
+    login_as(subject)
     click_on 'Fornecedores'
 
     expect(page).to have_content('Fornecedores')  
@@ -31,6 +35,7 @@ describe 'Usuário vê fornecedores' do
 
   it 'e não existem fornecedores cadastrados' do
     visit root_path
+    login_as(subject)
     click_on 'Fornecedores'
     expect(page).to have_content('Não existem fornecedores cadastrados')  
     

@@ -1,10 +1,13 @@
 require 'rails_helper'
 
 describe "Usuário edita um fornecedor" do
+  subject { create(:user) } 
+
   it 'a partir da pagina de detalhes' do
     supplier = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: CNPJ.generate,
       full_address: 'Av das palmas, 100', city:'Bauru', state: 'SP', email: 'contato@gmail.com')
-
+    visit root_path
+    login_as(subject)
     visit suppliers_path
     click_on 'ACME'
     click_on 'Editar'
@@ -21,6 +24,8 @@ describe "Usuário edita um fornecedor" do
   it 'com sucesso' do
     supplier = Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: CNPJ.generate,
                       full_address: 'Av das palmas, 100', city:'Bauru', state: 'SP', email: 'contato@gmail.com')
+    visit root_path
+    login_as(subject)
     visit suppliers_path
     click_on 'ACME'
     click_on 'Editar'
@@ -39,6 +44,8 @@ describe "Usuário edita um fornecedor" do
   it "e mantém os campos obrigatórios" do
       Supplier.create!(corporate_name: 'ACME LTDA', brand_name: 'ACME', registration_number: CNPJ.generate,
                         full_address: 'Av das palmas, 100', city:'Bauru', state: 'SP', email: 'contato@gmail.com')
+      visit root_path
+      login_as(subject)
       visit suppliers_path
       click_on 'ACME'
       click_on 'Editar'

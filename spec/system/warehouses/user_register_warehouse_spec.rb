@@ -1,9 +1,13 @@
 require 'rails_helper'
 
 describe "Usuário cadastra um galpão" do
+  subject { create(:user) } 
+
   it 'a partir da tela inicial' do
     #arrange
     #act
+    visit root_path
+    login_as(subject)
     visit root_path
     click_on 'Cadastrar Galpão'
     #assert
@@ -19,6 +23,8 @@ describe "Usuário cadastra um galpão" do
 
   it 'com sucesso' do
     #act
+    visit root_path
+    login_as(subject)
     visit root_path
     click_on 'Cadastrar Galpão'
     fill_in "Nome",	with: "Rio de Janeiro"
@@ -41,6 +47,8 @@ describe "Usuário cadastra um galpão" do
   it 'com dados incompletos' do
     #arrange
     #act
+    visit root_path
+    login_as(subject)
     visit root_path
     click_on 'Cadastrar Galpão'
     fill_in "Nome",	with: ''

@@ -15,7 +15,6 @@ describe "Usuário vê modelos de produtos" do
 
   it 'a partir do menu' do
     visit root_path
-    click_on 'Entrar'
     login_as(subject)
     within('nav') do
       click_on 'Modelos de Produtos'
@@ -35,7 +34,6 @@ describe "Usuário vê modelos de produtos" do
                           sku:'SOU71-SAMSU-NOI27710', supplier: supplier)
     #act
     visit root_path
-    click_on 'Entrar'
     login_as(subject)
     within('nav') do
       click_on 'Modelos de Produtos'
@@ -53,7 +51,6 @@ describe "Usuário vê modelos de produtos" do
   it 'e não existem produtos cadastrados' do
     #act
     visit root_path
-    click_on 'Entrar'
     login_as(subject)
     within('nav') do
       click_on 'Modelos de Produtos'
