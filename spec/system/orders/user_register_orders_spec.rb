@@ -26,6 +26,8 @@ describe "Usuário cadastra um pedido" do
     Supplier.create!(brand_name:'Samsung', corporate_name: 'Samsung Eletronicos LTDA', 
                                 registration_number: CNPJ.generate, full_address: 'Av Nações Unidas, 1000',
                                 city: 'São Paulo', state: 'SP', email:'sac@samsung.com.br')
+
+    allow(SecureRandom).to receive(:alphanumeric).with(Order::CODE_LENGTH).and_return('ABC1234567')
     #act
     visit root_path
     login_as(subject)
@@ -36,6 +38,7 @@ describe "Usuário cadastra um pedido" do
     click_on 'Gravar'
     #assert
     expect(page).to have_content 'Pedido registrado com sucesso.'
+    expect(page).to have_content "Pedido ABC1234567"
     expect(page).to have_content 'Galpão Destino: GRU - Aeroporto SP'
     expect(page).to have_content "Usuário Responsável: #{subject.name} - #{subject.email}"
     expect(page).to have_content "Fornecedor: #{supplier.full_description}"

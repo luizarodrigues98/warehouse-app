@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :warehouse do
-    name {'Aeroporto SP'}
+    name {Faker::Company.name}
     code {'GRU'}
-    city {'Guarulhos'}
+    city {Faker::Address.city}
     area {'100_000'}
-    address {'Avenida do Aeroporto, 100'}
+    address {Faker::Address.street_address }
     cep {'15000-000'}
     description {'Galpão destinado para cargas internacionais'}
   end
