@@ -20,11 +20,12 @@
         <%= link_to 'Registrar Pedido', new_order_url %> |
         
         <%if user_signed_in?%>
-          <%= current_user.name %> |
+          <%= current_user.description %> |
           <%= button_to 'Sair', destroy_user_session_url, method: :delete%>
         <%else%>
           <%= link_to "Entrar", new_user_session_url %> |
         <%end%>
+
       </nav>
     </header>
     <main>  

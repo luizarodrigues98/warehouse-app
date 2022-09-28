@@ -3,5 +3,8 @@ class Warehouse < ApplicationRecord
   validates :name, :code, uniqueness: true
   validates :cep, length: {is: 9}
   
+  def full_description
+    "#{code} - #{name}"
+  end
 end
 

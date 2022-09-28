@@ -12,7 +12,7 @@ describe "Usuário se autentica" do
     fill_in "Confirme sua senha",	with: "password" 
     click_on 'Criar conta'
     expect(page).to have_content 'Boas vindas! Você realizou seu registro com sucesso.'
-    expect(page).to have_content 'maria@email.com'
+    expect(page).to have_content 'Maria'
     expect(page).to have_button 'Sair'
     user= User.last
     expect(user.name).to eq 'Maria'
