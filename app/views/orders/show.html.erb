@@ -11,6 +11,6 @@
   <dd><%= "#{@user.name} <#{@user.email}>" %> </dd>
 
   <dt> Data Prevista de Entrega: </dt>
-  <dd><%= I18n.localize(@order.estimated_delivery_date)%> </dd>
+  <dd><%= l @order.estimated_delivery_date %> </dd>
 
 </dl>
