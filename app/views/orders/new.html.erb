@@ -11,8 +11,10 @@
   </div>
     <div>
     <%=f.label :estimated_delivery_date , 'Data Prevista de Entrega'%>
-    <%= f.text_field :estimated_delivery_date  %>
+    <%= f.date_field :estimated_delivery_date  %>
   </div>
 
   <%= f.submit 'Gravar'%>
-<% end %>>
+<% end %>
+
+<%= link_to "Voltar", root_url %>

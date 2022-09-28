@@ -3,6 +3,13 @@ require 'rails_helper'
 describe "Usuário cadastra um pedido" do
   subject { create(:user) } 
 
+  it 'e deve estar autenticado' do
+    visit root_path
+    click_on 'Registrar Pedido'
+
+    expect(current_path).to eq new_user_session_path
+  end
+
   it 'com sucesso' do
     #arrange
     warehouse = Warehouse.create(name:'Aeroporto SP', code:'GRU' , city: 'Guarulhos', area: 100_000,

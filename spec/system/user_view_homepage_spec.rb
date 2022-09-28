@@ -9,6 +9,7 @@ describe 'Usuário visita tela inicial' do
 
     #Assert
     expect(page).to have_content('Galpões & Estoque')  
+    expect(page).to have_link('Galpões & Estoque', href: root_url)  
   end
   it 'e vê os galpões cadastrados' do
     Warehouse.create(name: 'Rio', code: 'SDU', city:'Rio de Janeiro', area: 60_000, address: 'Av. do porto, 1000', cep:'12345-678' , description: 'Galpão do Rio')
