@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  
+  before_action :set_order_and_check_user, only: [:edit, :update, :show]
   def index
     @orders = current_user.orders
   end
@@ -23,10 +23,8 @@ class OrdersController < ApplicationController
       render 'new'
     end
   end
-
   def show
-    @order = Order.find(params[:id])
-    @user = @order.user
+    
   end
   
   def search
@@ -34,7 +32,29 @@ class OrdersController < ApplicationController
     @orders = Order.where("code like ?", "%#{@code}%")
   end
 
+  def edit
+    @warehouses = Warehouse.all
+    @suppliers = Supplier.all
+  end
+
+  def update
+    if @order.update(order_params)
+      redirect_to @order, notice: 'Pedido atualizado com sucesso'
+    else
+      @warehouses = Warehouse.all
+      @suppliers = Supplier.all
+      render 'new'
+    end
+  end
+
   private
+  def set_order_and_check_user
+    @order = Order.find(params[:id])
+    if @order.user != current_user 
+      redirect_to root_path, alert: 'Você não possui acesso a esse pedido' 
+    end
+  end
+
   def order_params
     params.require(:order).permit(:warehouse_id, :supplier_id, :estimated_delivery_date)
   end
