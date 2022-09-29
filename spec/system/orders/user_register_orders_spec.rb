@@ -48,10 +48,27 @@ describe "Usuário cadastra um pedido" do
     expect(page).not_to have_content 'Samsung Eletrônicos LTDA'
   end
 
+  it 'e não informa a data de entrega' do
+    warehouse = Warehouse.create!(name:'Aeroporto SP', code:'GRP' , city: 'Guarulhos', area: 100_000,
+                                  address: 'Avenida do Aeroporto, 100', cep: '15000-000',
+                                  description: 'Galpão destinado para cargas internacionais')
+
+    visit root_path
+    login_as(subject)
+    visit root_path
+    click_on 'Registrar Pedido'
+    select 'GRP - Aeroporto SP', from: 'Galpão Destino'
+    select @supplier.corporate_name, from: "Fornecedor"
+    fill_in "Data Prevista de Entrega",	with: nil
+    click_on 'Gravar'
+    expect(page).to have_content 'Não foi possível registrar o pedido'
+
+  end
+
   it 'e a data de entrega deve ser maior que hoje ' do
     order = build(:order, estimated_delivery_date: 1.day.from_now, user: @user, warehouse: @warehouse, supplier: @supplier)
-      order.valid?
-      result = order.errors.include?(:estimated_delivery_date)
-      expect(result).to be false
+    order.valid?
+    result = order.errors.include?(:estimated_delivery_date)
+    expect(result).to be false
   end
 end

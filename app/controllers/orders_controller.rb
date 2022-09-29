@@ -1,23 +1,21 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  
-  def index
-    
-  end
+
   def new
     @order = Order.new
     @warehouses = Warehouse.all
     @suppliers = Supplier.all
   end
+  
   def create
-    @suppliers = Supplier.all
-    @warehouses = Warehouse.all
     @order = Order.new(order_params) 
     @order.user = current_user
     if @order.save
       redirect_to order_path(@order), notice: 'Pedido registrado com sucesso.'
     else
-      flash.now[:notice] = 'Não foi possivel cadastrar o modelo de produto'
+      @suppliers = Supplier.all
+      @warehouses = Warehouse.all
+      flash.now[:notice] = 'Não foi possível registrar o pedido'
       render 'new'
     end
   end
@@ -25,6 +23,11 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @user = @order.user
+  end
+  
+  def search
+    @code = params["query"]
+    @order = Order.find_by(code: params["query"])
   end
 
   private
