@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  CODE_LENGTH = 10
+  CODE_LENGTH = 10.freeze
 
   belongs_to :warehouse
   belongs_to :supplier

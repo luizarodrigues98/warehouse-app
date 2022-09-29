@@ -8,9 +8,38 @@ RSpec.describe Order, type: :model do
       @supplier = create(:supplier)
     end
     it 'deve ter um código' do
-      order = Order.new( estimated_delivery_date: Date.today, user: @user, warehouse: @warehouse, supplier: @supplier)
+      order = build(:order, user: @user, warehouse: @warehouse, supplier: @supplier)
       result = order.valid?
       expect(result).to be true 
+    end
+
+    it 'data estimada de entrega deve ser obrigatório' do
+      order = build(:order, estimated_delivery_date: nil, user: @user, warehouse: @warehouse, supplier: @supplier)
+      order.valid?
+      result = order.errors.include?(:estimated_delivery_date)
+      expect(result).to be true
+    end
+    it 'data estimada de entrega não deve ser passsada' do
+      order = build(:order, estimated_delivery_date: 1.day.ago, user: @user, warehouse: @warehouse, supplier: @supplier)
+      order.valid?
+      result = order.errors.include?(:estimated_delivery_date)
+      expect(result).to be true
+      expect(order.errors[:estimated_delivery_date]).to include("deve ser maior que a data atual.")  
+    end
+    
+    it 'data estimada de entrega não deve ser igual a hoje' do
+      order = build(:order, estimated_delivery_date: Date.today, user: @user, warehouse: @warehouse, supplier: @supplier)
+      order.valid?
+      result = order.errors.include?(:estimated_delivery_date)
+      expect(result).to be true
+      expect(order.errors[:estimated_delivery_date]).to include("deve ser maior que a data atual.")  
+    end
+        
+    it 'data estimada de entrega deve ser igual ou maior que amanha' do
+      order = build(:order, estimated_delivery_date:  1.day.from_now, user: @user, warehouse: @warehouse, supplier: @supplier)
+      order.valid?
+      result = order.errors.include?(:estimated_delivery_date)
+      expect(result).to be false
     end
   end
   
@@ -31,7 +60,7 @@ RSpec.describe Order, type: :model do
     end
     
     it 'e o código é único' do
-      second_order = Order.new(user: @user, supplier: @supplier, warehouse: @warehouse, estimated_delivery_date: (Date.today))
+      second_order = Order.new(user: @user, supplier: @supplier, warehouse: @warehouse, estimated_delivery_date: (Date.today + 7.days))
       second_order.save!
       result = @order.code
       expect(second_order.code).not_to eq result  

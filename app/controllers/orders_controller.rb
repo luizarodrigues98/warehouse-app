@@ -1,6 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   
+  def index
+    
+  end
   def new
     @order = Order.new
     @warehouses = Warehouse.all
@@ -12,7 +15,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params) 
     @order.user = current_user
     if @order.save
-      redirect_to @order, notice: 'Pedido registrado com sucesso.'
+      redirect_to order_path(@order), notice: 'Pedido registrado com sucesso.'
     else
       flash.now[:notice] = 'Não foi possivel cadastrar o modelo de produto'
       render 'new'
