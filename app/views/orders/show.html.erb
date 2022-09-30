@@ -13,7 +13,13 @@
 
   <dt>  <%=Order.human_attribute_name(:estimated_delivery_date) %>: </dt>
   <dd><%= l @order.estimated_delivery_date %> </dd>
-
+  
+  <dt><%=Order.human_attribute_name(:status) %>:</dt>
+    <dd><%= I18n.translate(@order.status) %></dd>
 </dl>
+<%if @order.pending?%>
+  <%= button_to "Marcar como Entregue", delivered_order_url(@order.id) %>
+  <%= button_to "Marcar como Cancelado", canceled_order_url(@order.id) %>
 
+<%end%>
 <%= link_to "Editar", edit_order_url(@order.id) %>

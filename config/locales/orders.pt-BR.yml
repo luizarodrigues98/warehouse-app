@@ -1,4 +1,7 @@
 pt-BR:
+  pending: Pendente
+  canceled: Cancelado
+  delivered: Entregue
   activerecord:
     models:
       order: 
@@ -13,3 +16,4 @@ pt-BR:
         supplier: Fornecedor
         user_id: Usuário Responsável
         code: Código
+        status: Situação do Pedido

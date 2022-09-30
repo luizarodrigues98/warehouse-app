@@ -15,9 +15,9 @@ describe "Usuário vê seus próprios pedidos" do
     luiza_user = User.create!(name: 'Luiza', email: 'luiza@teste.com', password: 'password')
     warehouse = create(:warehouse)
     supplier = create(:supplier)
-    first_order = create(:order, user: luiza_user, warehouse: warehouse, supplier: supplier)
-    second_order = create(:order, user:subject , warehouse: warehouse, supplier: supplier)
-    third_order = create(:order, estimated_delivery_date: 1.week.from_now, user: luiza_user , warehouse: warehouse, supplier: supplier)
+    first_order = create(:order, user: luiza_user, warehouse: warehouse, supplier: supplier, status: 'pending')
+    second_order = create(:order, user:subject , warehouse: warehouse, supplier: supplier, status: 'delivered')
+    third_order = create(:order, estimated_delivery_date: 1.week.from_now, user: luiza_user , warehouse: warehouse, supplier: supplier, status: 'canceled')
   
     
     login_as(luiza_user)
@@ -25,8 +25,11 @@ describe "Usuário vê seus próprios pedidos" do
     click_on 'Meus Pedidos'
 
     expect(page).to have_content first_order.code
+    expect(page).to have_content 'Pendente'
     expect(page).not_to have_content second_order.code
+    expect(page).not_to have_content 'Entregue'
     expect(page).to have_content third_order.code
+    expect(page).to have_content 'Cancelado'
     
   end
 

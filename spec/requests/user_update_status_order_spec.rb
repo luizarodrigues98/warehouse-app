@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Usuário edita um pedidos" do
+describe "Usuário informa novo status de pedido" do
   before(:each) do
     @user = create(:user) 
     @warehouse = create(:warehouse)
@@ -11,7 +11,7 @@ describe "Usuário edita um pedidos" do
   it 'e não é o dono' do
     luiza_user = User.create!(name: 'Luiza', email: 'luiza@teste.com', password: 'password')
     login_as(luiza_user)
-    patch(order_path(@order.id), params: { order: {supplier_id: 3}})
+    post(delivered_order_path(@order.id))
     expect(response).to redirect_to(root_path)
   end
 end
