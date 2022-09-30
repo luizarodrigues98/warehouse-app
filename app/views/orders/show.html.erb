@@ -19,7 +19,9 @@
 </dl>
 
 <h2>Itens do Pedido</h2>
-<%@order.order_items.each do |item|%>
+<%= link_to "Adicionar Item", new_order_order_item_path(@order.id) %>
+
+<% @order.order_items.each do |item|%>
   <%= item.quantity%> x <%=item.product_model.name%>
 
 <%end%>
@@ -31,3 +33,4 @@
 
 <%end%>
 <%= link_to "Editar", edit_order_url(@order.id) %>
+
