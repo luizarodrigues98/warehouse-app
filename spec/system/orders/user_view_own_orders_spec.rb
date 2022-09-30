@@ -72,4 +72,28 @@ describe "Usuário vê seus próprios pedidos" do
 
   end
 
+  it 'e vê itens do pedido' do
+    warehouse = create(:warehouse)
+    supplier = create(:supplier)
+    a_product = ProductModel.create!(name:'Produto A', weight: 8000, width: 70, height: 45, depth: 10,  
+                          sku: 'TV32-SAMSU-XSPTOX959', supplier: supplier)
+    b_product = ProductModel.create!(name:'Produto B', weight: 3000, width: 80, height: 15, depth: 20,
+                          sku:'SOU71-SAMSU-NOI27710', supplier: supplier)
+    c_product = ProductModel.create!(name: 'Produto C', weight: 1, width: 10, height: 45, depth: 10, sku:'Product-C-1011111111', supplier: supplier)
+    
+    order = create(:order, user:subject , warehouse: warehouse, supplier: supplier)
+   
+    OrderItem.create!(product_model: a_product, order: order, quantity: 19)
+    OrderItem.create!(product_model: b_product, order: order, quantity: 12)
+    
+    login_as(subject)
+    visit root_path
+    click_on 'Meus Pedidos'
+    click_on order.code
+
+    expect(page).to have_content 'Itens do Pedido'
+    expect(page).to have_content '19 x Produto A'
+    expect(page).to have_content '12 x Produto B'
+  end
+
 end
