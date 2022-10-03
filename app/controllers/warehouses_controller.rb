@@ -2,7 +2,9 @@ class WarehousesController < ApplicationController
   before_action :set_warehouse, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   
-  def show;end
+  def show
+    @stocks = @warehouse.stock_products.group(:product_model).count
+  end
 
   def new
     @warehouse = Warehouse.new
@@ -36,10 +38,10 @@ class WarehousesController < ApplicationController
   private
   
    def set_warehouse
-    @warehouse = Warehouse.find(params[:id])  
-  end
+      @warehouse = Warehouse.find(params[:id])  
+    end
  
-  def warehouse_params
-    params.require(:warehouse).permit(:name, :code, :description, :address, :city, :cep, :area)
-  end
+    def warehouse_params
+      params.require(:warehouse).permit(:name, :code, :description, :address, :city, :cep, :area)
+    end
 end
