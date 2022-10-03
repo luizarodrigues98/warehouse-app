@@ -48,7 +48,8 @@ RSpec.describe Order, type: :model do
       @user = create(:user) 
       @warehouse = create(:warehouse)
       @supplier = create(:supplier)
-      @order = create(:order, user: @user, warehouse: @warehouse, supplier: @supplier)
+      @order = create(:order, estimated_delivery_date: 1.week.from_now, 
+        user: @user, warehouse: @warehouse, supplier: @supplier)
     end
     
     
@@ -64,6 +65,12 @@ RSpec.describe Order, type: :model do
       second_order.save!
       result = @order.code
       expect(second_order.code).not_to eq result  
+    end
+
+    it 'e não deve ser modificado' do
+      original_code = @order.code
+      @order.update!(estimated_delivery_date: 1.month.from_now,)
+      expect(@order.code).to eq(original_code)
     end
   end
 end
