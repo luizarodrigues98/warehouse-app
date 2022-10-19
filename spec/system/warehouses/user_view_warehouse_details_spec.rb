@@ -31,7 +31,7 @@ describe "Usuário vê detalhes de um galpão" do
     login_as(subject)
     visit root_path
     click_on 'Aeroporto SP'
-    click_on 'Voltar'
+    click_on 'Galpões & Estoque'
     #assert: espero boltar para tela inicial
     expect(current_path).to eq(root_path)
   end
