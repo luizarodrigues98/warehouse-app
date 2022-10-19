@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
     else
       @warehouses = Warehouse.all
       @suppliers = Supplier.all
-      render 'new'
+      render 'edit'
     end
   end
 
