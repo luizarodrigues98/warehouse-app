@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
-  resources :warehouses, only: [:show,:new, :create, :edit, :update, :destroy] do
+  resources :warehouses, only: [:show, :new, :create, :edit, :update, :destroy] do
     resources :stock_product_destinations, only: [:create]
   end
   resources :suppliers
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   namespace :api do 
     namespace :v1 do 
-      resources :warehouses, only: [:show, :index]
+      resources :warehouses, only: [:show, :index, :create]
     end
   end
 end
