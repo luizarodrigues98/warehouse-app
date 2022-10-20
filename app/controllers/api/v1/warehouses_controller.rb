@@ -1,6 +1,4 @@
-class Api::V1::WarehousesController < ActionController::API
-  rescue_from ActiveRecord::ActiveRecordError, with: :return_500
-  rescue_from ActiveRecord::RecordNotFound, with: :return_404
+class Api::V1::WarehousesController < Api::V1::ApiController
   
   def show
     warehouse = Warehouse.find(params[:id])
@@ -25,10 +23,5 @@ class Api::V1::WarehousesController < ActionController::API
   def warehouse_params
     params.require(:warehouse).permit(:name, :code, :city, :address, :area, :cep, :description)
   end
-  def return_500
-    render status: 500
-  end
-  def return_404
-    render status: 404
-  end
+
 end
