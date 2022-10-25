@@ -1,5 +1,4 @@
 class Api::V1::WarehousesController < Api::V1::ApiController
-  
   def show
     warehouse = Warehouse.find(params[:id])
     render status: 200, json: warehouse.as_json(except: [:created_at, :updated_at])
